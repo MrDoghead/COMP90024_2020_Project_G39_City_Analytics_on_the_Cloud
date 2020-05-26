@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Distribution</title>
+<style>
+body{
+  background-image: url("{{ url_for('static', filename='background_chart.jpg') }}")
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #e2e6e8;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: #585a5b;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+    font-family: italic;
+}
+.section{
+      position: relative;
+    }
+    .sectionOne{
+      margin-top: 32px;
+      display: inline-block;
+      height: 566px;
+      line-height: 566px;
+      text-align: center;
+      width: 50%;
+      color:white;
+      background-color: transparent;
+    }
+    .sectionTwo{
+      margin-top: 10px;
+      display: inline-block;
+      float: right;
+      height: 566px;
+      line-height: 566px;
+      text-align: center;
+      width: 50%;
+      color: white;
+      background-color: ;
+    }
+
+.active {
+    background-color: #e2e6e8;
+}
+</style>
+</head>
+<body>
+
+<ul>
+  <li><a href="{{ url_for('home') }}">Home</a></li>
+  <li><a href="{{ url_for('emotion') }}">Emotion</a></li>
+  <li><a href="{{ url_for('distribution') }}">Distribution</a></li>
+  <li><a href="{{ url_for('language') }}">Language</a></li>
+  <li style="float:right"><a class="active" href="#about">Data collected from Twitter</a></li>
+</ul>
+
+<div class="section">
+  <div class="sectionOne">
+    <iframe align="center" width="95%" height="600" src="{{ url_for('static', filename='compare_aurin_location.html') }}"  frameborder="no" border="0" marginwidth="200px" marginheight="0" scrolling="no"></iframe></div>
+  <div class="sectionTwo"><h1>
+    <iframe align="center" width="95%" height="600" src="{{ url_for('static', filename='SentMap_COVID-19.html') }}"  frameborder="no" border="0" marginwidth="200px" marginheight="0" scrolling="no"></h1></div>
+</div>
+
+
+
+</div>
+</body>
+</html>
