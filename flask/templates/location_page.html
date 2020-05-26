@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Emotion</title>
+<title>second_chart</title>
 <style>
 body{
   background-image: url("{{ url_for('static', filename='background_chart.jpg') }}")
@@ -65,21 +65,19 @@ li a:hover:not(.active) {
 
 <ul>
   <li><a href="{{ url_for('home') }}">Home</a></li>
-  <li><a href="{{ url_for('emotion') }}">Emotion</a></li>
-  <li><a href="{{ url_for('distribution') }}">Distribution</a></li>
+  <li><a href="{{ url_for('covid') }}">Covid-19</a></li>
+  <li><a href="{{ url_for('location') }}">Location</a></li>
+  <li><a href="{{ url_for('income') }}">Income</a></li>
   <li><a href="{{ url_for('language') }}">Language</a></li>
-  <li style="float:right"><a class="active" href="#about">Data collected from Twitter</a></li>
+  <li><a href="{{ url_for('twitter') }}">Twitter</a></li>
+  <li><a href="{{ url_for('emotion') }}">Emotion</a></li>
+  <li style="float:right"><p>collected data: {{ num }}</p></li>
 </ul>
 
 <div class="section">
-  <div class="sectionOne">
-    <iframe align="center" width="95%" height="600" src="{{ url_for('static', filename='SentMap_COVID-19.html') }}"  frameborder="no" border="0" marginwidth="200px" marginheight="0" scrolling="no"></iframe></div>
-  <div class="sectionTwo"><h1>
-    <iframe align="center" width="95%" height="600" src="{{ url_for('static', filename='AurinMap_Income.html') }}"  frameborder="no" border="0" marginwidth="200px" marginheight="0" scrolling="no"></h1></div>
-</div>
+  <p>The green circle represents the population of the area. And the larger the diameter, the more the population.</p>
+  <iframe align="center" width="100%" height="600" src="{{ url_for('static', filename='compare_aurin_location.html') }}"  frameborder="no" border="0" marginwidth="200px" marginheight="0" scrolling="no"></iframe></div>
 
 
-
-</div>
 </body>
 </html>

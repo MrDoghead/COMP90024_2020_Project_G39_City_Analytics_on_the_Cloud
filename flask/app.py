@@ -19,15 +19,27 @@ def home():
 
 @app.route('/emotion')
 def emotion():
-    return render_template('emotion_chart.html')
+    return render_template('emotion_page.html', num=number_of_tweets)
 
-@app.route('/distribution')
-def distribution():
-    return render_template('distribution_chart.html')
+@app.route('/income')
+def income():
+    return render_template('income_page.html', num=number_of_tweets)
+
+@app.route('/covid')
+def covid():
+    return render_template('covid-19_page.html', num=number_of_tweets)
 
 @app.route('/language')
 def language():
-    return render_template('language_chart.html')
+    return render_template('language_page.html', num=number_of_tweets)
+
+@app.route('/location')
+def location():
+    return render_template('location_page.html', num=number_of_tweets)
+
+@app.route('/twitter')
+def twitter():
+    return render_template('twitter_page.html', num=number_of_tweets)
 
 
 if __name__ == '__main__':  
