@@ -1,3 +1,13 @@
+'''
+title: COMP90024 project
+Author: Team-39
+Dongnan Cao 970205
+Fuyao Zhang 813023
+Liqin Zhang 890054
+Zhiqian Chen 1068712
+Chuxin Zou
+'''
+
 from get_data_from_db import Task1
 from iso639 import languages
 from pyecharts.charts import Bar, Pie
