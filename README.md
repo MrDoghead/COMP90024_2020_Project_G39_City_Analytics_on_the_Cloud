@@ -17,4 +17,4 @@ requirements: Assignments2.pdf
 
 github: https://github.com/MrDoghead/COMP90024_2020_Project_G39_City_Analytics_on_the_Cloud
 
-youtube: https://youtu.be/N7Ct66Kh0UY
+youtube:   https://youtu.be/N7Ct66Kh0UY
