@@ -3,18 +3,18 @@
 
 Author: Team-39
 
-Chuxin Zou  1061714
+Chuxin Zou 1061714 China
 
-Dongnan Cao 970205
+Dongnan Cao 970205 China
 
-Fuyao Zhang 813023
+Fuyao Zhang 813023 Austalia
 
-Liqin Zhang 890054
+Liqin Zhang 890054 China
 
-Zhiqian Chen 1068712
+Zhiqian Chen 1068712 Australia
 
 requirements: Assignments2.pdf
 
 github: https://github.com/MrDoghead/COMP90024_2020_Project_G39_City_Analytics_on_the_Cloud
 
-youtube:   https://youtu.be/N7Ct66Kh0UY
+youtube:   https://youtu.be/V35Hk0W3fLg

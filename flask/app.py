@@ -19,8 +19,9 @@ app.config.update(
     COUCHDB_DATABASE='test'
 )
 server = couchdb.Server('http://admin:password@172.26.133.0:5984')
-db = server['australia-covid-19']
-number_of_tweets = len(db)
+covid_db = server['australia-covid-19']^M
+income_db = server['income']^M
+number_of_tweets = len(covid_db)+len(income_db)^M
 
 
 @app.route('/')
