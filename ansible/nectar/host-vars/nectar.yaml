@@ -1,0 +1,73 @@
+# Team: 39
+# Chuxin Zou 1061714 China
+# Dongnan Cao 970205 China
+# Fuyao Zhang 813023 Austalia
+# Liqin Zhang 890054 China
+# Zhiqian Chen 1068712 Australia
+
+# Author: Chuxin Zou (1061714)
+
+# define common vars needed
+availability_zone: melbourne-qh2-uom
+network: qh2-uom-internal
+
+# volume
+volumes:
+  - vol_name: g39-vol-1
+    vol_size: 56
+  - vol_name: g39-vol-2
+    vol_size: 56
+  - vol_name: g39-vol-3
+    vol_size: 56
+  - vol_name: g39-vol-4
+    vol_size: 56
+  
+
+# security group
+security_groups:
+  - name: g39-ssh
+    description: "security group for ssh"
+    protocol: tcp
+    port_range_min: 22
+    port_range_max: 22
+    remote_ip_prefix: 0.0.0.0/0
+  - name: g39-http
+    description: "security group for http"
+    protocol: tcp
+    port_range_min: 80
+    port_range_max: 80
+    remote_ip_prefix: 0.0.0.0/0
+  - name: couchdb1
+    description: "open port for couchdb1"
+    protocol: tcp
+    port_range_min: 5984
+    port_range_max: 5984
+    remote_ip_prefix: 0.0.0.0/0
+  - name: couchdb2
+    description: "open port for couchdb2"
+    protocol: tcp
+    port_range_min: 4369
+    port_range_max: 4369
+    remote_ip_prefix: 0.0.0.0/0
+  - name: couchdb3
+    description: "open port for couchdb3"
+    protocol: tcp
+    port_range_min: 9100
+    port_range_max: 9200
+    remote_ip_prefix: 0.0.0.0/0
+
+
+# instance
+instances:
+  - name: g39-ins-1
+    volumes: 'g39-vol-1'
+  - name: g39-ins-2
+    volumes: 'g39-vol-2'
+  - name: g39-ins-3
+    volumes: 'g39-vol-3'
+  - name: g39-ins-4
+    volumes: 'g39-vol-4'
+
+instance_image: 45225edb-66d8-4fd0-bf41-132a31a18166
+instance_key_name: key2
+instance_flavor: uom.mse.2c9g

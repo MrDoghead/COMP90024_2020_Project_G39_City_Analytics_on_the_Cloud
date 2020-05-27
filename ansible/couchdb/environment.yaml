@@ -1,0 +1,53 @@
+# Team: 39
+# Chuxin Zou 1061714 China
+# Dongnan Cao 970205 China
+# Fuyao Zhang 813023 Austalia
+# Liqin Zhang 890054 China
+# Zhiqian Chen 1068712 Australia
+
+# Author: Chuxin Zou (1061714)
+
+
+
+# This playbook is to set up the evironment and install dependencies for installing couchdb
+
+
+- hosts: COMP90024
+  tasks:
+    
+    - name: add proxy setting to /etc/enviornment
+      become: yes
+      blockinfile:
+        path: /etc/environment
+        block: | 
+          http_proxy=http://wwwproxy.unimelb.edu.au:8000/
+          https_proxy=http://wwwproxy.unimelb.edu.au:8000/
+          no_proxy=localhost,127.0.0.1,localaddress,172.16.0.0/12,.melbourne.rc.nectar.org.au,.storage.unimelb.edu.au,.cloud.unimelb.edu.au/
+          HTTP_PROXY=http://wwwproxy.unimelb.edu.au:8000/
+          HTTPS_PROXY=http://wwwproxy.unimelb.edu.au:8000/
+
+    - name: Update all pakages in apt
+      apt:
+        upgrade: dist 
+        force_apt_get: yes
+    
+    - name: Install pip
+      become: yes
+      apt:
+        name: ['python-pip']
+        state: latest
+        update_cache: yes
+    
+    - name: Couchdb Setup Build Environment
+      become: yes
+      apt:
+        name:
+          - build-essential
+          - pkg-config
+          - erlang-base 
+          - libicu-dev 
+          - libcurl4-openssl-dev
+        install_recommends: no
+    
+    - name: Preparing to install Couchdb
+      command: apt-get install -y apt-transport-https gnupg ca-certificates

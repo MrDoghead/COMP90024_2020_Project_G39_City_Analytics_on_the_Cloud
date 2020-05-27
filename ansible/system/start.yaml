@@ -1,0 +1,75 @@
+# Team: 39
+# Chuxin Zou 1061714 China
+# Dongnan Cao 970205 China
+# Fuyao Zhang 813023 Austalia
+# Liqin Zhang 890054 China
+# Zhiqian Chen 1068712 Australia
+
+# Author: Chuxin Zou (1061714)
+
+# write shell script and start the system
+
+- hosts: COMP90024-1
+  tasks: 
+    - name: Check directory.
+      stat:
+        path: /home/ubuntu/project/run.sh
+      register: file
+    
+    - name: Remove directory if exists
+      file:
+        path: /home/ubuntu/project/run.sh
+        state: absent
+      when: file.stat.exists == true
+    
+    - name: create file if not exists
+      file:
+        path: /home/ubuntu/project/run.sh
+        state: touch
+
+    - name: Check directory.
+      stat:
+        path: /home/ubuntu/project/run2.sh
+      register: file2
+    
+    - name: Remove directory if exists
+      file:
+        path: /home/ubuntu/project/run2.sh
+        state: absent
+      when: file2.stat.exists == true
+    
+    - name: create file if not exists
+      file:
+        path: /home/ubuntu/project/run2.sh
+        state: touch    
+    
+    - name: write run2.sh
+      become: yes
+      blockinfile:
+        path: /home/ubuntu/project/run.sh
+        block: | 
+          #!/bin/bash
+          sudo nohup python3 /home/ubuntu/project/analysis/analysis.py & 
+          sudo nohup python3 /home/ubuntu/project/analysis/AurinIncome.py & 
+          sudo nohup python3 /home/ubuntu/project/analysis/SentMap_COVID19.py & 
+          sudo nohup python3 /home/ubuntu/project/analysis/SentMap_INCOME.py & 
+          sudo nohup python3 /home/ubuntu/project/flask/app.py & 
+
+    - name: write run.sh
+      become: yes
+      blockinfile:
+        path: /home/ubuntu/project/run2.sh
+        block: | 
+          #!/bin/bash
+          sudo nohup python3 /home/ubuntu/project/harvester/harvester1.py &
+          sudo nohup python3 /home/ubuntu/project/harvester/harvester2.py &
+
+    - name: start analysis1
+      command: bash /home/ubuntu/project/run.sh
+    
+    - name: start analysis2
+      command: bash /home/ubuntu/project/run2.sh
+
+      
+
+    

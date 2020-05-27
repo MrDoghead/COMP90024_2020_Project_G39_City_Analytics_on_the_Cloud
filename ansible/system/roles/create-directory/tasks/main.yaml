@@ -1,0 +1,28 @@
+# Team: 39
+# Chuxin Zou 1061714 China
+# Dongnan Cao 970205 China
+# Fuyao Zhang 813023 Austalia
+# Liqin Zhang 890054 China
+# Zhiqian Chen 1068712 Australia
+
+# Author: Chuxin Zou (1061714)
+
+- name: Check directory.
+  stat:
+    path: /home/ubuntu/project/
+  register: folder
+    
+- name: Remove directory if exists
+  file:
+    path: /home/ubuntu/project/
+    state: absent
+  when: folder.stat.exists == true
+
+- name: "Create directory if not exists"
+  file:
+    path: /home/ubuntu/project/
+    state: directory
+    mode: 0777
+    group: root
+    owner: root
+  when: folder.stat.exists == false

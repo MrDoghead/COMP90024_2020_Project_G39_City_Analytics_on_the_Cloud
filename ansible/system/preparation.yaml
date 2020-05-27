@@ -1,0 +1,63 @@
+# Team: 39
+# Chuxin Zou 1061714 China
+# Dongnan Cao 970205 China
+# Fuyao Zhang 813023 Austalia
+# Liqin Zhang 890054 China
+# Zhiqian Chen 1068712 Australia
+
+# Author: Chuxin Zou (1061714)
+
+# Install packages for the system
+
+
+- hosts: COMP90024
+  tasks: 
+    - name: Install pip
+      apt:
+        name: ['python-pip']
+        state: latest
+    
+    
+    - name: Install pip3
+      apt:
+        name: ['python3-pip']
+        state: latest
+
+    - name: Install flask
+      command: pip3 install flask
+    
+    - name: Install couchdb
+      command: pip3 install couchdb
+    
+    - name: Install pandas
+      command: pip3 install pandas
+    
+    - name: Install numpy
+      command: pip3 install pandas
+    
+    - name: Install re
+      command: pip3 install regex
+    
+    - name: Install pyecharts
+      command: pip3 install pyecharts -U
+    
+    - name: Install folium
+      command: pip3 install folium
+
+    - name: Install schedule
+      command: pip3 install schedule
+
+    - name: Install statistics
+      command: pip3 install statistics
+    
+    - name: Install TwitterAPI
+      command: pip3 install TwitterAPI
+
+    - name: Install tweepy
+      command: pip3 install tweepy
+    
+    - name: Install nltk
+      command: pip3 install nltk
+
+    - name: Install iso639
+      command: pip3 install iso-639

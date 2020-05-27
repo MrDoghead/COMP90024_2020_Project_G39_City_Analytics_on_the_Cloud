@@ -1,0 +1,91 @@
+# Team: 39
+# Chuxin Zou 1061714 China
+# Dongnan Cao 970205 China
+# Fuyao Zhang 813023 Austalia
+# Liqin Zhang 890054 China
+# Zhiqian Chen 1068712 Australia
+
+# Author: Chuxin Zou (1061714)
+
+
+## This is to configure the couchdb 
+
+- hosts: COMP90024
+  tasks:
+    - name: Add CouchDB System Account
+      user:
+        name: couchdb
+        comment: "CouchDB System Account"
+        shell: /bin/bash
+        system: yes
+        home: /opt/couchdb
+        createhome: no
+
+    - name: Change CouchDB Ownership
+      file:
+        path: /opt/couchdb
+        owner: couchdb
+        group: couchdb
+        mode: 0770
+        recurse: yes
+        state: directory
+
+    - name: Change CouchDB Config File Permission
+      file:
+        path: /opt/couchdb/etc
+        owner: couchdb
+        group: couchdb
+        mode: 0644
+        recurse: yes
+        state: directory
+
+    - name: Change CouchDB Directory Permission
+      command: find /opt/couchdb -type d -exec chmod 0770 {} \;
+
+    - name: Bind Cluster Address to Public
+      lineinfile:
+        dest: /opt/couchdb/etc/local.ini
+        insertafter: '^\[chttpd\]$'
+        line: 'bind_address = 0.0.0.0'
+
+    - name: Bind Node Address to Public
+      lineinfile:
+        dest: /opt/couchdb/etc/local.ini
+        insertafter: '^\[httpd\]$'
+        line: 'bind_address = 0.0.0.0'
+    
+    - name: Open port for erlang
+      blockinfile:
+        dest: /opt/couchdb/etc/vm.args
+        insertafter: '^-sasl sasl_error_logger false$'
+        block: | 
+          -kernel inet_dist_listen_min 9100
+          -kernel inet_dist_listen_max 9200
+
+    - name: Install CouchDB Service
+      copy:
+        src: ./couchdb.service
+        dest: /etc/systemd/system/couchdb.service
+        owner: root
+        group: root
+
+    - name: Enable CouchDB Service
+      systemd:
+        daemon-reload: yes
+        name: couchdb
+        enabled: yes
+
+    - name: Start CouchDB Service
+      systemd:
+        name: couchdb
+        state: started
+    
+    - name: Stop couchdb
+      command: systemctl stop couchdb
+    
+    - name: Restart couchdb
+      command: systemctl start couchdb
+    
+    - name: Enable couchdb
+      command: systemctl enable couchdb
+

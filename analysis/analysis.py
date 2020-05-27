@@ -1,12 +1,11 @@
-'''
-title: COMP90024 project
-Author: Team-39
-Dongnan Cao 970205
-Fuyao Zhang 813023
-Liqin Zhang 890054
-Zhiqian Chen 1068712
-Chuxin Zou
-'''
+# Team: 39
+# Chuxin Zou 1061714
+# Dongnan Cao 970205
+# Fuyao Zhang 813023
+# Liqin Zhang 890054
+# Zhiqian Chen 1068712
+
+# Author: Chuxin Zou (1061714)
 
 from get_data_from_db import *
 import folium
@@ -179,8 +178,8 @@ def analysis_location():
         ).add_to(melbourne_map)
     melbourne_map.add_child(incidents).save('/home/ubuntu/project/flask/static/compare_aurin_location.html')    
 
-schedule.every(5).minutes.do(analysis_lang)
-schedule.every(5).minutes.do(analysis_location)
+schedule.every().day.at('00:00').do(analysis_lang)
+schedule.every().day.at('00:00').do(analysis_location)
 
 while True:
     schedule.run_pending()

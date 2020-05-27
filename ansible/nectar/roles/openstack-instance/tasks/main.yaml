@@ -1,0 +1,53 @@
+# Team: 39
+# Chuxin Zou 1061714 China
+# Dongnan Cao 970205 China
+# Fuyao Zhang 813023 Austalia
+# Liqin Zhang 890054 China
+# Zhiqian Chen 1068712 Australia
+
+# Author: Chuxin Zou (1061714)
+
+# create VMs on uom research cloud
+
+# create instances
+- name: Create instances
+  os_server:
+    name: '{{ item.name }}'
+    image: '{{ instance_image }}'
+    key_name: '{{ instance_key_name}}'
+    flavor: '{{ instance_flavor }}'
+    network: '{{ network }}'
+    availability_zone: '{{ availability_zone }}'
+    security_groups: '{{ sg_names }}'
+    volumes: '{{ item.volumes }}'
+    auto_floating_ip: yes      #get public ip address
+    wait: yes
+    timeout: 600
+    state: present     #use 'absent' to remove a VM
+  loop: '{{ instances }}'
+  register: os_instance   # register the task outcome as os_instance
+
+
+- debug:
+    msg: "Instance {{ item.openstack.name }} has been created, IP address is {{ item.openstack.public_v4 }}."
+  loop: '{{ os_instance.results }}'
+  when: item.openstack is defined
+
+
+- name: Wait for connection
+  wait_for:
+    host: '{{ item.openstack.public_v4 }}'
+    port: 22
+    timeout: 120
+    search_regex: OpenSSH
+  loop: '{{ os_instance.results }}'
+  when: item.openstack is defined
+
+
+# add host in Ansible inventory
+- name: Add host
+  add_host:
+    name: '{{ item.openstack.name }}'
+    groups: COMP90024
+  loop: '{{ os_instance.results }}'
+  when: item.openstack is defined

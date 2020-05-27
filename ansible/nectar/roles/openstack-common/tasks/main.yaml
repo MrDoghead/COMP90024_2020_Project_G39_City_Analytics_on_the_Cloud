@@ -1,0 +1,31 @@
+# Team: 39
+# Chuxin Zou 1061714 China
+# Dongnan Cao 970205 China
+# Fuyao Zhang 813023 Austalia
+# Liqin Zhang 890054 China
+# Zhiqian Chen 1068712 Australia
+
+# Author: Chuxin Zou (1061714)
+
+# install dependences on the host
+
+- name: Install pip
+  become: yes
+  apt:
+    name: ['python-pip']
+    state: latest
+    update_cache: yes
+  when: ansible_distribution=='Ubuntu'
+
+- name: Update-pip
+  become: yes
+  pip:
+    name: ['pip']
+    state: latest
+
+- name: Install openstacksdk
+  become: yes
+  pip:
+    name: ['openstacksdk']
+    state: latest
+
