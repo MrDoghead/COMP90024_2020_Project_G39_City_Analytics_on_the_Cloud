@@ -12,10 +12,10 @@ from get_data_from_twitter import *
 import time
 
 def task():
-    consumer_key = 'O7VdcNQferxQglccX8Vj5i69y'
-    consumer_secret = 'YuV982BJyMBi8zMWYzgsKJ21CmFnsDgXJp4k65IHoSW7jF9ocS'
-    access_token_key = '1251724444373942272-fgchtfjfNz8ZJQy1Qbsuuyg8bPWNwg'
-    access_token_secret = 'y9VOQUvurz3lC4tkA8xwI92nWDw2H1YMBC050vZEo5l6I'
+    consumer_key = ''
+    consumer_secret = ''
+    access_token_key = ''
+    access_token_secret = ''
     keys = [consumer_key,consumer_secret,access_token_key,access_token_secret]
     #proxy_url = '192.168.10.101'
     topic = 'COVID-19'
