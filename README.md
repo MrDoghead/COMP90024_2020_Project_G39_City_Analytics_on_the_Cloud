@@ -3,15 +3,15 @@
 
 Author: Team-39
 
-Chuxin Zou 1061714 China
+Chuxin Zou xxxxxx China
 
-Dongnan Cao 970205 China
+Dongnan Cao xxxxxx China
 
-Fuyao Zhang 813023 Austalia
+Fuyao Zhang xxxxxx Austalia
 
-Liqin Zhang 890054 China
+Liqin Zhang xxxxxxx China
 
-Zhiqian Chen 1068712 Australia
+Zhiqian Chen xxxxxx Australia
 
 requirements: Assignments2.pdf
 
